@@ -25,21 +25,6 @@ const App = () => {
     },
   ]);
 
-  // Observa alterações no estado dos iframes mantendo o menu de edição preenchido com as informações do iframe selecionado
-  useEffect(() => {
-    const iframeSelected = iframes.filter(i => i.selected)
-    const [i] = iframeSelected;
-
-    // OBS: HTMLInputElement não reconhece o tipo string, verificar possíveis soluções 
-    if (i !== undefined) {
-      (document.getElementById('name') as HTMLInputElement).value = i.name;
-      (document.getElementById('src') as HTMLInputElement).value = i.src;
-      (document.getElementById('width') as HTMLInputElement).value = i.width;
-      (document.getElementById('id') as HTMLInputElement).value = i.id;
-      (document.getElementById('height') as HTMLInputElement).value = i.height;
-    }
-
-  }, [iframes])
 
   let mousePosition;
   let offset = [0, 0];
@@ -99,10 +84,7 @@ const App = () => {
 
   // Verifica inputs que estão sendo alteradas e adiciona atualiza o iframe selecionado no momento
   const handleInputChange = (e: any) => {
-    const updateIframe = iframes.map(i => {
-      return i.selected === true ? { ...i, [e.target.name]: e.target.value } : { ...i}
-    })
-    setIframes(updateIframe);
+    
   }
 
   return (
