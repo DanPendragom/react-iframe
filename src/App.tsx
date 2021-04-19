@@ -100,7 +100,7 @@ const App = () => {
   // Verifica inputs que estão sendo alteradas e adiciona atualiza o iframe selecionado no momento
   const handleInputChange = (e: any) => {
     const updateIframe = iframes.map(i => {
-      return i.selected === true ? { ...i, [e.target.name]: e.target.value } : { ...i}
+      return i.selected === true ? { ...i, [e.target.name]: e.target.value } : { ...i }
     })
     setIframes(updateIframe);
   }
@@ -156,13 +156,40 @@ const App = () => {
 
       <EditArea>
         <h3>Editar atributos</h3>
+
+        <hr/>
+
         <section>
-          <input name="id" id="id" placeholder="ID" readOnly type="text" />
-          <input name="name" id="name" onChange={handleInputChange} placeholder="Nome do iframe" type="text" />
-          <input name="src" id="src" onChange={handleInputChange} placeholder="Endereço" type="text" />
-          <input name="width" id="width" onChange={handleInputChange} placeholder="Largura" type="number" />
-          <input name="height" id="height" onChange={handleInputChange} placeholder="Altura" type="number" />
-          <input placeholder="" type="text" />
+          <div>
+            <label htmlFor="id">Identificador</label>
+            <input name="id" id="id" placeholder="ID" readOnly type="text" />
+          </div>
+
+          <div>
+            <label htmlFor="id">Nome</label>
+            <input name="name" id="name" onChange={handleInputChange} placeholder="Nome do iframe" type="text" />
+          </div>
+
+          <div>
+            <label htmlFor="id">Endereço</label>
+            <input name="src" id="src" onChange={handleInputChange} placeholder="Endereço" type="text" />
+          </div>
+
+          <div>
+            <label htmlFor="id">Largura</label>
+            <input name="width" id="width" onChange={handleInputChange} placeholder="Largura" type="number" />
+          </div>
+
+          <div>
+            <label htmlFor="id">Altura</label>
+            <input name="height" id="height" onChange={handleInputChange} placeholder="Altura" type="number" />
+          </div>
+          
+          <div>
+            <label htmlFor="id">Selecionado</label>
+            <input name="selected" id="selected" onChange={handleInputChange} placeholder="Selected" type="text" />
+          </div>
+
         </section>
       </EditArea>
 

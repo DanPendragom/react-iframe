@@ -146,20 +146,35 @@ const EditArea = styled.div`
     width: 100%;
     height: 30vh;
     background-color: #4D82C1;
-    padding: 36px; 
+    padding: 16px 36px; 
     overflow: scroll; 
     h3{
         color: #FFF;
     }
+    hr{
+            margin: 20px 0;
+        }
     section{
         display: flex; 
         justify-content: space-between;
         flex-wrap: wrap; 
         width: 100%;
-        input{
-            width: 30%;
+       
+        div{
+            display: flex;
+            flex-direction: column;
             min-width: 300px;
-            margin-top: 16px;
+            width: 30%;
+        }
+        label{
+            margin-top: 6px;
+            color: #FFF;
+            font-weight: bold;
+        }
+        input{
+            width: 100%;
+            min-width: 300px;
+            margin-top: 8px;
             border: 0;
             border-radius: 5px;
             height: 35px;
