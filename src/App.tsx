@@ -11,6 +11,48 @@ interface IframeData {
   height: number;
 }
 
+const [iframes, setIframes] = useState<IframeData[]>([
+  {
+    id: 1,
+    name: 'Youtube',
+    src: "https://www.youtube.com/embed?listType=playlist&list=PLC77007E23FF423C6",
+    selected: true,
+    width: 350,
+    height: 350,
+  },
+]);
+
+let mousePosition;
+let offset = [0, 0];
+let isDown = false;
+
+const mouseDown = (e: any) => {
+  isDown = true;
+  offset = [
+    e.target.offsetLeft - e.clientX,
+    e.target.offsetTop - e.clientY
+  ];
+}
+
+const mouseUp = () => {
+  isDown = false;
+}
+
+const mouseMove = (e: any) => {
+  if (isDown) {
+    mousePosition = {
+
+      x: e.clientX,
+      y: e.clientY
+
+    };
+    e.target.style.left = (mousePosition.x + offset[0]) + 'px';
+    // Para evitar que os iframes invadam áreas não previstas, limitar os valores neste trecho de forma dinâmica
+    e.target.style.top = ((mousePosition.y < 100 ? mousePosition.y = 100 : mousePosition.y) + offset[1]) + 'px';
+  }
+}
+
+
 const App = () => {
 
 
@@ -26,6 +68,14 @@ const App = () => {
         </Header>
 
         <IframeArea>
+        {iframes.map(iframe => (
+            <div className="iframe-container" key={iframe.id} onMouseDown={mouseDown} onMouseUp={mouseUp} onMouseMove={mouseMove} >
+              <div>
+                <h3>{iframe.name}</h3>
+              </div>
+              <iframe src={iframe.src} > {iframe.name} </iframe>
+            </div>
+          ))}
 
           <IframeList >
             <header>
